@@ -3,9 +3,20 @@ from gpt_researcher.utils.enum import ReportType, Tone
 import asyncio
 
 async def main():
+    # Read prompt from file
+    try:
+        with open('prompts.txt', 'r', encoding='utf-8') as file:
+            prompt = file.read().strip()
+    except FileNotFoundError:
+        print("Error: prompts.txt file not found")
+        return
+    except Exception as e:
+        print(f"Error reading prompts.txt: {e}")
+        return
+
     # Initialize researcher with deep research type
     researcher = GPTResearcher(
-        query="I gonna sell my apartment in with 46 square meters, one bed room and one bathroom in the next 6 months. The apartment is in Glory Heights, Vinhomes Grand Park, Thu Duc City, Ho Chi Minh City, Vietnam. What is the best time to sell it?",
+        query=prompt,  # Use the prompt from file
         report_type=ReportType.DeepResearch,  # This triggers deep research modd
         tone=Tone.Formal,
         report_format="markdown"
