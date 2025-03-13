@@ -8,9 +8,6 @@ pydantic
 fastapi
 python-multipart
 markdown
-langchain
-langchain_community
-langchain-openai
 openai==1.66.3
 anthropic==0.49.0
 tiktoken==0.9.0
@@ -29,6 +26,8 @@ unstructured==0.17.0
 json_repair
 json5
 loguru
+langchain==0.3.20
+langchain_community==0.3.19
 langchain-deepseek==0.1.2
 langchain-openai==0.3.8
 langchain-anthropic==0.3.9
