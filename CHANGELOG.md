@@ -1,3 +1,13 @@
+## [2025-03-13] [PR#8](https://github.com/KennyDizi/DRA/pull/8)
+
+### Added
+- Added `STRATEGIC_LLM` configuration to `.env.example`.
+- Added `RETRIEVER` configuration with provider options.
+
+### Updated
+- Updated `TAVILY_API_KEY` and `SERPER_API_KEY` with documentation links.
+- Enhanced environment variable documentation for clarity.
+
 ## [2025-03-13] [PR#6](https://github.com/KennyDizi/DRA/pull/6)
 
 ### Changed
