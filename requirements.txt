@@ -31,3 +31,4 @@ langchain_community==0.3.19
 langchain-deepseek==0.1.2
 langchain-openai==0.3.8
 langchain-anthropic==0.3.9
+tavily-python==0.5.1
