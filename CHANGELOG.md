@@ -1,3 +1,12 @@
+## [2025-03-13] [PR#6](https://github.com/KennyDizi/DRA/pull/6)
+
+### Changed
+- Increased `DEEP_RESEARCH_DEPTH` from `2` to `4`.
+- Decreased `DEEP_RESEARCH_CONCURRENCY` from `4` to `2`.
+
+### Added
+- Added `EMBEDDING_PROVIDER` with value `"openai"`.
+
 ## [2025-03-13] [PR#1](https://github.com/KennyDizi/DRA/pull/1)
 
 ### Added
