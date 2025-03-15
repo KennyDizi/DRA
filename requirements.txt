@@ -44,3 +44,4 @@ langchain_community==0.3.19
 python-dotenv==1.0.1
 langchain-unstructured==0.1.6
 unstructured==0.17.0
+faiss-cpu==1.10.0
