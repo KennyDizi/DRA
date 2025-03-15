@@ -1,3 +1,11 @@
+## [2025-03-14] [PR#20](https://github.com/KennyDizi/DRA/pull/20)
+
+### Added
+- Added `DataIngestionAgent` class for data ingestion functionality with support for customizable `knowledge_base_collection`.
+- Implemented `Logger` class for advanced logging with console and file logging, including rotation, retention, and compression.
+- Created `run_data_ingestion.sh` shell script to execute `DataIngestionAgent` with specified collection name.
+- Defined `KnowledgeBaseCollection` enum in `utils.py` with `GENERIC` collection type.
+
 ## [2025-03-13] [PR#8](https://github.com/KennyDizi/DRA/pull/8)
 
 ### Added
