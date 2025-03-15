@@ -1,5 +1,6 @@
 from multiprocessing import Pool
 import os
+from traceback import format_exc
 from logger import get_logger
 from utils import KnowledgeBaseCollection
 from langchain_docling import DoclingLoader
@@ -37,16 +38,42 @@ class DataIngestionAgent:
         docs = loader.load()
         return docs
 
+    @staticmethod
+    def process_file_safe(file_path: str):
+        try:
+            docs = DataIngestionAgent.process_file(file_path)
+            return (file_path, docs, None)
+        except Exception as e:
+            return (file_path, None, f"{str(e)}\nTraceback:\n{format_exc()}")
+
     def ingest_data(self):
         self.logger.info(f"Ingesting data to {self.knowledge_base_collection} collection.")
         file_paths = self.get_files()
         self.logger.info(f"Files: {file_paths}")
 
+        if not file_paths:
+            self.logger.warning("No files found for processing.")
+            return
+
+        successful_docs = []
+        failed_files = []
+
         # use parallel processing to chunk the files
-        with Pool(processes=len(file_paths)) as pool:
-            docs = pool.map(DataIngestionAgent.process_file, file_paths)
-            self.logger.info(f"Docs: {docs}")
-        pass
+        with Pool(processes=min(os.cpu_count(), 8)) as pool:  # Limits to CPU cores or 8 max
+            results = pool.map(DataIngestionAgent.process_file_safe, file_paths)
+            for file_path, docs, error in results:
+                if error:
+                    failed_files.append((file_path, str(error)))
+                    self.logger.error(f"Failed to process {file_path}: {error}.")
+                else:
+                    successful_docs.extend(docs)
+
+        self.logger.info(f"Successfully processed docs: {len(successful_docs)}.")
+
+        if failed_files:
+            self.logger.error("Failed to process these files:")
+            for file_path, error in failed_files:
+                self.logger.error(f"\n- {file_path} ({error}).")
 
     def get_files(self):
         """
