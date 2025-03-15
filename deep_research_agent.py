@@ -8,7 +8,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_unstructured import UnstructuredLoader
 
-SUPPORTED_REPORT_SOURCES = [ReportSource.Web.value, ReportSource.Hybrid.value]
+SUPPORTED_REPORT_SOURCES = [ReportSource.Web.value, ReportSource.Local.value, ReportSource.Hybrid.value]
 
 logger = get_logger()
 
@@ -38,7 +38,7 @@ async def main():
     logger.info(f"Starting deep research agent with report source: {args.report_source}.")
 
     vector_store = None
-    if args.report_source == ReportSource.Hybrid.value:
+    if args.report_source == ReportSource.Hybrid.value or args.report_source == ReportSource.Local.value:
         # Initialize vector store
         embeddings = OpenAIEmbeddings(model="text-embedding-3-large", dimensions=1536)
         FAISS_INDEX_NAME = os.path.join("openworkspace-o1-vecs", f"faiss_index_{args.collection_name}")
