@@ -59,7 +59,7 @@ class DataIngestionAgent:
         failed_files = []
 
         # use parallel processing to chunk the files
-        with Pool(processes=min(os.cpu_count(), 8)) as pool:  # Limits to CPU cores or 8 max
+        with Pool(processes=min(os.cpu_count(), 4)) as pool:  # Limits to CPU cores or 4 max
             results = pool.map(DataIngestionAgent.process_file_safe, file_paths)
             for file_path, docs, error in results:
                 if error:
