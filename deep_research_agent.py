@@ -28,7 +28,7 @@ async def main():
         print(f"Error reading prompts.txt: {e}")
         return
 
-    logger.info(f"Starting deep research agent with report source: {args.report_source}")
+    logger.info(f"Starting deep research agent with report source: {args.report_source}.")
 
     # Initialize researcher with deep research type
     researcher = GPTResearcher(
