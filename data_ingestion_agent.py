@@ -13,6 +13,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
+IGNORE_FILE_EXTENSIONS = [".DS_Store"]
+
 class DataIngestionAgent:
     """
     This class is used to ingest data into the knowledge base collection with vectorization.
@@ -76,7 +78,7 @@ class DataIngestionAgent:
 
         # chunk the documents
         if successful_docs:
-            self.incrementally_store_docs(successful_docs, self.knowledge_base_collection, "openworkspace-o1-docs")
+            self.incrementally_store_docs(successful_docs, collection_name=self.knowledge_base_collection, folder_path="openworkspace-o1-vecs")
             self.logger.info(f"Successfully processed docs: {len(successful_docs)}.")
 
         if failed_files:
@@ -92,6 +94,8 @@ class DataIngestionAgent:
         folder_path = os.path.join("openworkspace-o1-docs", self.knowledge_base_collection)
         file_paths =[]
         for file in os.listdir(folder_path):
+            if file.endswith(tuple(IGNORE_FILE_EXTENSIONS)):
+                continue
             file_paths.append(os.path.join(folder_path, file))
         return file_paths
 
