@@ -19,7 +19,7 @@ class DataIngestionAgent:
     @staticmethod
     def process_file(file_path: str):
         docling_supported_file_extensions = [".pdf", ".docx", ".xlsx", ".pptx", ".png", ".jpeg", ".tiff", ".bmp"]
-        if file_path.endswith(tuple(docling_supported_file_extensions)):
+        if file_path.lower().endswith(tuple(docling_supported_file_extensions)):
             return DataIngestionAgent.process_file_with_docling_loader(file_path)
         else:
             return DataIngestionAgent.process_file_with_unstructured_loader(file_path)
