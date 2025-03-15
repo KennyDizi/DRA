@@ -31,8 +31,12 @@ Run command:
 
 This mode is a combination of `web` and `local` modes. It can get data from the Internet as well as your local files.
 
-You have to set `DOC_PATH` to `./my-docs` in your `.env` file.
-Then put your documents to this folder.
+You must set `DOC_PATH` to `./my-docs` in your `.env` file.
+Then, put your documents in this folder.
+
+If your documents are stored online, you will put all your links to `DOCUMENT_URLS`, separate them by `,`. For example: `DOCUMENT_URLS=https://yourdocument1.docx,https://yourdocument2.pdf`
+
+Important note: If you enable `DOCUMENT_URLS`, the `DOC_PATH` will not be used.
 
 Run command:
 
