@@ -31,7 +31,6 @@ async def main():
 
     logger.info(f"Starting deep research agent with report source: {args.report_source}.")
 
-    vector_store = None
     document_urls = None
     if args.report_source == ReportSource.Hybrid.value or args.report_source == ReportSource.Local.value:
         doc_path = os.getenv("DOC_PATH")
@@ -52,7 +51,6 @@ async def main():
         tone=Tone.Formal,
         report_format="markdown",
         report_source=args.report_source,
-        vector_store=vector_store,
         document_urls=document_urls
     )
 
