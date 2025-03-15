@@ -3,6 +3,14 @@
 # Initialize default collection name
 COLLECTION_NAME=""
 
+# Load environment variables from .env file if present
+if [ -f .env ]; then
+    echo "Loading .env file"
+    set -a
+    source .env
+    set +a
+fi
+
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
