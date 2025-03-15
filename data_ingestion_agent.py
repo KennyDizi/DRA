@@ -4,6 +4,7 @@ from logger import get_logger
 from utils import KnowledgeBaseCollection
 from langchain_docling import DoclingLoader
 from docling.chunking import HybridChunker
+from langchain_unstructured import UnstructuredLoader
 
 class DataIngestionAgent:
     """
@@ -15,9 +16,24 @@ class DataIngestionAgent:
 
     @staticmethod
     def process_file(file_path: str):
+        docling_supported_file_extensions = [".pdf", ".docx", ".xlsx", ".pptx", ".png", ".jpeg", ".tiff", ".bmp"]
+        if file_path.endswith(tuple(docling_supported_file_extensions)):
+            return DataIngestionAgent.process_file_with_docling_loader(file_path)
+        else:
+            return DataIngestionAgent.process_file_with_unstructured_loader(file_path)
+
+    @staticmethod
+    def process_file_with_docling_loader(file_path: str):
         """Process a single file using DoclingLoader"""
         chunker = HybridChunker()
         loader = DoclingLoader(file_path=file_path, chunker=chunker)
+        docs = loader.load()
+        return docs
+
+    @staticmethod
+    def process_file_with_unstructured_loader(file_path: str):
+        """Process a single file using UnstructuredLoader"""
+        loader = UnstructuredLoader(file_path=file_path)
         docs = loader.load()
         return docs
 
