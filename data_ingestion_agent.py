@@ -10,6 +10,8 @@ from langchain_unstructured import UnstructuredLoader
 from langchain_docling.loader import ExportType
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
 
 class DataIngestionAgent:
     """
@@ -74,7 +76,7 @@ class DataIngestionAgent:
 
         # chunk the documents
         if successful_docs:
-            chunks: List[Document] = self.chunk_docs(successful_docs)
+            self.incrementally_store_docs(successful_docs, self.knowledge_base_collection, "openworkspace-o1-docs")
             self.logger.info(f"Successfully processed docs: {len(successful_docs)}.")
 
         if failed_files:
@@ -97,6 +99,32 @@ class DataIngestionAgent:
         """
         Chunk the documents into smaller chunks
         """
-        splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+        splitter = RecursiveCharacterTextSplitter(chunk_size=200)
         chunks = splitter.split_documents(docs)
         return chunks
+
+    def incrementally_store_docs(self, docs: list[Document], collection_name: str, folder_path: str):
+        """
+        Incrementally store the documents into the knowledge base collection vector store
+        """
+        embeddings = OpenAIEmbeddings(model="text-embedding-3-large", dimensions=1536)
+        FAISS_INDEX_NAME = os.path.join(folder_path, f"faiss_index_{collection_name}")
+        # Check if the index already exists
+        if os.path.exists(FAISS_INDEX_NAME):
+            self.logger.info(f"Loading existing FAISS index from {FAISS_INDEX_NAME}")
+            # Load the existing FAISS index
+            vector_store = FAISS.load_local(FAISS_INDEX_NAME, embeddings, allow_dangerous_deserialization=True)
+
+            self.logger.info(f"Adding documents to the existing index.")
+            # Add the documents to the existing index
+            vector_store.add_documents(docs)
+
+            # Save the FAISS index to disk
+            FAISS.save_local(vector_store, FAISS_INDEX_NAME)
+        else:
+            self.logger.info(f"Creating a new FAISS index.")
+            # Create a FAISS index from the text documents
+            vector_store = FAISS.from_documents(docs, embeddings)
+
+            # Save the FAISS index to disk
+            FAISS.save_local(vector_store, FAISS_INDEX_NAME)
