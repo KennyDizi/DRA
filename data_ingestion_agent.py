@@ -1,3 +1,4 @@
+from multiprocessing import Pool
 import os
 from logger import get_logger
 from utils import KnowledgeBaseCollection
@@ -12,13 +13,23 @@ class DataIngestionAgent:
         self.knowledge_base_collection = knowledge_base_collection
         self.logger = get_logger()
 
+    @staticmethod
+    def process_file(file_path: str):
+        """Process a single file using DoclingLoader"""
+        chunker = HybridChunker()
+        loader = DoclingLoader(file_path=file_path, chunker=chunker)
+        docs = loader.load()
+        return docs
+
     def ingest_data(self):
         self.logger.info(f"Ingesting data to {self.knowledge_base_collection} collection.")
         file_paths = self.get_files()
         self.logger.info(f"Files: {file_paths}")
-        chunker = HybridChunker()
-        loader = DoclingLoader(file_path="data/test.pdf", chunker=chunker)
-        docs = loader.load()
+
+        # use parallel processing to chunk the files
+        with Pool(processes=len(file_paths)) as pool:
+            docs = pool.map(DataIngestionAgent.process_file, file_paths)
+            self.logger.info(f"Docs: {docs}")
         pass
 
     def get_files(self):
@@ -26,7 +37,7 @@ class DataIngestionAgent:
         Get all the files in the folder path
         """
         # folder_path is a combination of the knowledge base collection with the root directory
-        folder_path = os.path.join(os.path.dirname(__file__), "openworkspace-o1-docs", self.knowledge_base_collection)
+        folder_path = os.path.join("openworkspace-o1-docs", self.knowledge_base_collection)
         file_paths =[]
         for file in os.listdir(folder_path):
             file_paths.append(os.path.join(folder_path, file))
