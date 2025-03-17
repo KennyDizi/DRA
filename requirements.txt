@@ -32,7 +32,7 @@ langchain-deepseek==0.1.2
 langchain-openai==0.3.8
 langchain-anthropic==0.3.10
 tavily-python==0.5.1
-firecrawl-py==1.13.5
+firecrawl-py==1.14.1
 docling==2.26.0
 docling-ibm-models==3.4.1
 langchain-docling==0.2.0
