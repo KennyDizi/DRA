@@ -1,3 +1,10 @@
+## [2025-03-17] [PR#31](https://github.com/KennyDizi/DRA/pull/31)
+
+### Added
+- Added support for multiple retrievers via `RETRIEVERS` environment variable.
+- Updated `.env.example` to include `RETRIEVERS` with options like `tavily` and `arxiv`.
+- Added documentation in `USAGE.md` for setting up `RETRIEVERS`.
+
 ## [2025-03-14] [PR#20](https://github.com/KennyDizi/DRA/pull/20)
 
 ### Added
