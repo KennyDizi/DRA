@@ -43,3 +43,9 @@ Run command:
 ```bash
 ./run.sh --report-source hybrid
 ```
+
+## Environment variable set up
+
+### RETRIEVERS
+
+You can set it as a single value, eg: `RETRIEVERS="tavily"` or multiple value `RETRIEVERS="tavily,arxiv"` separate them by `,`.

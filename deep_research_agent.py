@@ -44,6 +44,9 @@ async def main():
                 document_urls = document_urls.split(",")
                 logger.info(f"Document URLs: {document_urls}")
 
+    # Get retrievers from environment variable
+    retrievers = os.getenv("RETRIEVERS")
+
     # Initialize researcher with deep research type
     researcher = GPTResearcher(
         query=prompt,
@@ -51,7 +54,10 @@ async def main():
         tone=Tone.Formal,
         report_format="markdown",
         report_source=args.report_source,
-        document_urls=document_urls
+        document_urls=document_urls,
+        headers={
+            "retrievers": retrievers
+        }
     )
 
     # Run research
