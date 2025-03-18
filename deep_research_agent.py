@@ -105,7 +105,7 @@ async def main():
     with open(os.path.join(report_path, filename), "w", encoding="utf-8") as file:
         file.write(generated_report)
 
-    logger.info(f"Report saved as {filename}")
+    logger.info(f"Report saved as {filename} to directory {report_path}.")
 
 if __name__ == "__main__":
     asyncio.run(main())
