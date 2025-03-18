@@ -83,6 +83,10 @@ async def main():
         logger.error("REPORT_PATH environment variable is not set.")
         return
 
+    # Check and create report directory if it doesn't exist
+    if not os.path.exists(report_path):
+        os.makedirs(report_path)
+
     # Generate filename with timestamp
     timestamp = datetime.now().strftime("%Y-%m-%d_%I-%M%p")
     filename = f"{timestamp}.md"
