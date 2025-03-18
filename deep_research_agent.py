@@ -5,6 +5,10 @@ import os
 import argparse
 from logger import get_logger
 
+def convert_to_report_source(source_str: str) -> ReportSource:
+    """Convert string value to ReportSource enum."""
+    return ReportSource(source_str.lower().capitalize())
+
 SUPPORTED_REPORT_SOURCES = [ReportSource.Web.value, ReportSource.Local.value, ReportSource.Hybrid.value]
 
 logger = get_logger()
@@ -18,6 +22,13 @@ async def main():
                        help='Specify data source for the report (local, web or hybrid)')
     args = parser.parse_args()
 
+    # Convert string to enum
+    try:
+        report_source = convert_to_report_source(args.report_source)
+    except ValueError:
+        logger.error(f"Invalid report source: {args.report_source}")
+        return
+
     # Read prompt from file
     try:
         with open('prompts.txt', 'r', encoding='utf-8') as file:
@@ -29,16 +40,16 @@ async def main():
         print(f"Error reading prompts.txt: {e}")
         return
 
-    logger.info(f"Starting deep research agent with report source: {args.report_source}.")
+    logger.info(f"Starting deep research agent with report source: {report_source.value}.")
 
     document_urls = None
-    if args.report_source == ReportSource.Hybrid.value or args.report_source == ReportSource.Local.value:
+    if report_source in (ReportSource.Hybrid, ReportSource.Local):
         doc_path = os.getenv("DOC_PATH")
         if doc_path is None:
             logger.error("DOC_PATH environment variable is not set.")
             return
 
-        if args.report_source == ReportSource.Hybrid.value:
+        if report_source == ReportSource.Hybrid:
             document_urls = os.getenv("DOCUMENT_URLS")
             if document_urls is not None:
                 document_urls = document_urls.split(",")
@@ -50,10 +61,10 @@ async def main():
     # Initialize researcher with deep research type
     researcher = GPTResearcher(
         query=prompt,
-        report_type=ReportType.DeepResearch,
-        tone=Tone.Formal,
+        report_type=ReportType.DeepResearch.value,
+        tone=Tone.Formal.value,
         report_format="markdown",
-        report_source=args.report_source,
+        report_source=report_source.value,
         document_urls=document_urls,
         headers={
             "retrievers": retrievers
