@@ -7,7 +7,7 @@ from logger import get_logger
 
 def convert_to_report_source(source_str: str) -> ReportSource:
     """Convert string value to ReportSource enum."""
-    return ReportSource(source_str.lower().capitalize())
+    return ReportSource(source_str.lower())
 
 SUPPORTED_REPORT_SOURCES = [ReportSource.Web.value, ReportSource.Local.value, ReportSource.Hybrid.value]
 
@@ -17,9 +17,9 @@ async def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Run deep research agent.')
     parser.add_argument('--report-source',
-                       default='web',
+                       default=ReportSource.Web.value,
                        choices=SUPPORTED_REPORT_SOURCES,
-                       help='Specify data source for the report (local, web or hybrid)')
+                       help='Specify data source for the report (local, web or hybrid).')
     args = parser.parse_args()
 
     # Convert string to enum
@@ -34,10 +34,10 @@ async def main():
         with open('prompts.txt', 'r', encoding='utf-8') as file:
             prompt = file.read().strip()
     except FileNotFoundError:
-        print("Error: prompts.txt file not found")
+        print("Error: prompts.txt file not found.")
         return
     except Exception as e:
-        print(f"Error reading prompts.txt: {e}")
+        print(f"Error reading prompts.txt: {e}.")
         return
 
     logger.info(f"Starting deep research agent with report source: {report_source.value}.")
