@@ -50,8 +50,8 @@ async def main():
     # Initialize researcher with deep research type
     researcher = GPTResearcher(
         query=prompt,
-        report_type=ReportType.DeepResearch,
-        tone=Tone.Formal,
+        report_type=ReportType.DeepResearch.value,
+        tone=Tone.Formal.value,
         report_format="markdown",
         report_source=args.report_source,
         document_urls=document_urls,
