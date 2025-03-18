@@ -62,7 +62,7 @@ async def main():
     researcher = GPTResearcher(
         query=prompt,
         report_type=ReportType.DeepResearch.value,
-        tone=Tone.Formal.value,
+        tone=Tone.Formal,
         report_format="markdown",
         report_source=report_source.value,
         document_urls=document_urls,
