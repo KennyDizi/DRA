@@ -3,6 +3,7 @@ from gpt_researcher.utils.enum import ReportType, Tone, ReportSource
 import asyncio
 import os
 import argparse
+from datetime import datetime
 from logger import get_logger
 
 def convert_to_report_source(source_str: str) -> ReportSource:
@@ -75,8 +76,17 @@ async def main():
     await researcher.conduct_research()
 
     # Generate report
-    report = await researcher.write_report()
-    print(report)
+    generated_report = await researcher.write_report()
+
+    # Generate filename with timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d_%I-%M%p")
+    filename = f"{timestamp}.md"
+
+    # Save report to file
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(generated_report)
+
+    logger.info(f"Report saved as {filename}")
 
 if __name__ == "__main__":
     asyncio.run(main())
