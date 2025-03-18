@@ -21,7 +21,15 @@ async def main():
                        default=ReportSource.Web.value,
                        choices=SUPPORTED_REPORT_SOURCES,
                        help='Specify data source for the report (local, web or hybrid).')
+    parser.add_argument('--total-words',
+                       type=int,
+                       help='Specify the total number of words for the report.')
     args = parser.parse_args()
+
+    # Set total words environment variable if provided
+    if args.total_words is not None:
+        logger.info(f"Setting TOTAL_WORDS to {args.total_words}.")
+        os.environ["TOTAL_WORDS"] = str(args.total_words)
 
     # Convert string to enum
     try:
@@ -72,11 +80,13 @@ async def main():
         }
     )
 
+    logger.info("Conducting research...")
     # Run research
     await researcher.conduct_research()
 
     # Generate report
     generated_report = await researcher.write_report()
+    logger.info(f"Generated report: {generated_report}")
 
     report_path = os.getenv("REPORT_PATH")
     if report_path is None:
