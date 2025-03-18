@@ -78,12 +78,17 @@ async def main():
     # Generate report
     generated_report = await researcher.write_report()
 
+    report_path = os.getenv("REPORT_PATH")
+    if report_path is None:
+        logger.error("REPORT_PATH environment variable is not set.")
+        return
+
     # Generate filename with timestamp
     timestamp = datetime.now().strftime("%Y-%m-%d_%I-%M%p")
     filename = f"{timestamp}.md"
 
     # Save report to file
-    with open(filename, "w", encoding="utf-8") as file:
+    with open(os.path.join(report_path, filename), "w", encoding="utf-8") as file:
         file.write(generated_report)
 
     logger.info(f"Report saved as {filename}")
