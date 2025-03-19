@@ -18,7 +18,7 @@ class DataIngestionAgent:
 
     @staticmethod
     def process_file(file_path: str):
-        docling_supported_file_extensions = [".pdf", ".docx", ".xlsx", ".pptx", ".png", ".jpeg", ".tiff", ".bmp"]
+        docling_supported_file_extensions = [".docx", ".xlsx", ".pptx", ".png", ".jpeg", ".tiff", ".bmp"]
         if file_path.lower().endswith(tuple(docling_supported_file_extensions)):
             return DataIngestionAgent.process_file_with_docling_loader(file_path)
         else:
@@ -69,11 +69,12 @@ class DataIngestionAgent:
                     self.logger.error(f"Failed to process {file_path}: {error}.")
                 else:
                     file_name = os.path.basename(file_path)
+                    file_name_without_ext = os.path.splitext(file_name)[0]  # Get name without extension
                     combined_docs = ""
                     self.logger.info(f"File {file_name} has {len(docs)} docs.")
                     for doc in docs:
                         combined_docs += f"{doc.page_content}\n"
-                    with open(os.path.join("my-docs", f"{file_name}.md"), "w") as f:
+                    with open(os.path.join("my-docs", f"{file_name_without_ext}.md"), "w") as f:
                         f.write(combined_docs)
 
         if failed_files:
