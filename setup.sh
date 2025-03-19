@@ -1,2 +1,3 @@
 pip install -r requirements.txt
-pip install "unstructured[pdf]"
+pip install "unstructured[pdf,docx,pptx,doc,ppt,xlsx]"
+brew reinstall libmagic
