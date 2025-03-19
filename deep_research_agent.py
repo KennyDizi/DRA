@@ -16,14 +16,18 @@ logger = get_logger()
 
 async def main():
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description='Run deep research agent.')
-    parser.add_argument('--report-source',
+    parser = argparse.ArgumentParser(description="Run deep research agent.")
+    parser.add_argument("--report-source",
                        default=ReportSource.Web.value,
                        choices=SUPPORTED_REPORT_SOURCES,
-                       help='Specify data source for the report (local, web or hybrid).')
-    parser.add_argument('--total-words',
+                       help="Specify data source for the report (local, web or hybrid).")
+    parser.add_argument("--total-words",
                        type=int,
-                       help='Specify the total number of words for the report.')
+                       help="Specify the total number of words for the report.")
+    parser.add_argument("--prompts",
+                       type=str,
+                       default="prompts.txt",
+                       help="Specify the prompts file for the report.")
     args = parser.parse_args()
 
     # Set total words environment variable if provided
@@ -40,13 +44,13 @@ async def main():
 
     # Read prompt from file
     try:
-        with open('prompts.txt', 'r', encoding='utf-8') as file:
+        with open(f"{os.path.join("prompts", args.prompts)}", "r", encoding="utf-8") as file:
             prompt = file.read().strip()
     except FileNotFoundError:
-        print("Error: prompts.txt file not found.")
+        print(f"Error: {args.prompts} file not found.")
         return
     except Exception as e:
-        print(f"Error reading prompts.txt: {e}.")
+        print(f"Error reading {args.prompts}: {e}.")
         return
 
     logger.info(f"Starting deep research agent with report source: {report_source.value}.")
