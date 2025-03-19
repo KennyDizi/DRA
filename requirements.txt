@@ -14,6 +14,7 @@ tiktoken==0.9.0
 gpt-researcher==0.12.12
 arxiv==2.1.3
 PyMuPDF==1.25.4
+pypdfium2==4.30.1
 requests
 jinja2
 aiofiles
@@ -23,6 +24,8 @@ htmldocx
 lxml_html_clean
 websockets
 unstructured==0.17.0
+unstructured-inference==0.8.10
+onnxruntime==1.19.2
 json_repair
 json5
 loguru
