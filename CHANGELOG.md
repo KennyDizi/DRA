@@ -1,3 +1,13 @@
+## [2025-03-19] [PR#43](https://github.com/KennyDizi/DRA/pull/43)
+
+### Added
+- Added `--prompts` argument to dynamically load prompt files, defaulting to `prompts.txt` if not specified.
+- Improved error messages for prompt file operations.
+
+### Changed
+- Updated file path handling for prompts to use `os.path.join`.
+- Refactored argument parsing for better readability.
+
 ## [2025-03-17] [PR#31](https://github.com/KennyDizi/DRA/pull/31)
 
 ### Added
