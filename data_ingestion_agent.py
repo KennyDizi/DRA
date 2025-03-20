@@ -1,4 +1,4 @@
-from multiprocessing import Pool
+from multiprocessing import Pool, get_context
 import os
 from traceback import format_exc
 from logger import get_logger
@@ -66,8 +66,10 @@ class DataIngestionAgent:
             os.makedirs("my-docs")
 
         # use parallel processing to chunk the files
-        with Pool(processes=min(os.cpu_count(), 4)) as pool:  # Limits to CPU cores or 4 max
+        with get_context('spawn').Pool(processes=min(os.cpu_count(), 4)) as pool:  # Using spawn context
             results = pool.map(DataIngestionAgent.process_file_safe, file_paths)
+            pool.close()  # Explicit close
+            pool.join()   # Explicit join
             for file_path, docs, error in results:
                 self.logger.info(f"Processing {file_path} ...")
                 if error:
