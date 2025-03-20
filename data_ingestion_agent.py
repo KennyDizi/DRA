@@ -18,7 +18,7 @@ class DataIngestionAgent:
 
     @staticmethod
     def process_file(file_path: str):
-        docling_supported_file_extensions = [".png", ".jpeg", ".tiff", ".bmp"]
+        docling_supported_file_extensions = [".tiff", ".bmp"]
         if file_path.lower().endswith(tuple(docling_supported_file_extensions)):
             return DataIngestionAgent.process_file_with_docling_loader(file_path)
         else:
@@ -35,7 +35,9 @@ class DataIngestionAgent:
     @staticmethod
     def process_file_with_unstructured_loader(file_path: str):
         """Process a single file using UnstructuredLoader"""
-        loader = UnstructuredLoader(file_path=file_path)
+        api_key = os.getenv("UNSTRUCTURED_API_KEY") if os.getenv("UNSTRUCTURED_API_KEY") else None
+        partition_via_api = True if api_key else False
+        loader = UnstructuredLoader(file_path=file_path, partition_via_api=partition_via_api, api_key=api_key)
         docs = loader.load()
         return docs
 
