@@ -1,4 +1,4 @@
-from multiprocessing import Pool
+from multiprocessing import Pool, get_context
 import os
 from traceback import format_exc
 from logger import get_logger
@@ -18,7 +18,7 @@ class DataIngestionAgent:
 
     @staticmethod
     def process_file(file_path: str):
-        docling_supported_file_extensions = [".png", ".jpeg", ".tiff", ".bmp"]
+        docling_supported_file_extensions = [".tiff", ".bmp"]
         if file_path.lower().endswith(tuple(docling_supported_file_extensions)):
             return DataIngestionAgent.process_file_with_docling_loader(file_path)
         else:
@@ -35,7 +35,9 @@ class DataIngestionAgent:
     @staticmethod
     def process_file_with_unstructured_loader(file_path: str):
         """Process a single file using UnstructuredLoader"""
-        loader = UnstructuredLoader(file_path=file_path)
+        api_key = os.getenv("UNSTRUCTURED_API_KEY") if os.getenv("UNSTRUCTURED_API_KEY") else None
+        partition_via_api = True if api_key else False
+        loader = UnstructuredLoader(file_path=file_path, partition_via_api=partition_via_api, api_key=api_key)
         docs = loader.load()
         return docs
 
@@ -59,9 +61,15 @@ class DataIngestionAgent:
 
         failed_files: list[tuple[str, str]] = [] # List of files that failed to process
 
+        # Check if folder my-docs exists, if not create it
+        if not os.path.exists("my-docs"):
+            os.makedirs("my-docs")
+
         # use parallel processing to chunk the files
-        with Pool(processes=min(os.cpu_count(), 4)) as pool:  # Limits to CPU cores or 4 max
+        with get_context('spawn').Pool(processes=min(os.cpu_count(), 4)) as pool:  # Using spawn context
             results = pool.map(DataIngestionAgent.process_file_safe, file_paths)
+            pool.close()  # Explicit close
+            pool.join()   # Explicit join
             for file_path, docs, error in results:
                 self.logger.info(f"Processing {file_path} ...")
                 if error:
