@@ -71,7 +71,7 @@ class DataIngestionAgent:
                     file_name = os.path.basename(file_path)
                     file_name_without_ext = os.path.splitext(file_name)[0]  # Get name without extension
                     combined_docs = ""
-                    self.logger.info(f"File {file_name} has {len(docs)} docs.")
+                    self.logger.info(f"File {file_name} has {len(docs)} chunks.")
                     for doc in docs:
                         combined_docs += f"{doc.page_content}\n"
                     with open(os.path.join("my-docs", f"{file_name_without_ext}.md"), "w") as f:
