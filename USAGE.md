@@ -1,5 +1,9 @@
 # Deep Research Usage Guide
 
+## Setup
+
+You can follow the original use guide [here](https://github.com/assafelovic/gpt-researcher?tab=readme-ov-file#installation)
+
 ## Run with web mode
 
 This mode only gets the data source from the Internet with the search engine and crawler.
