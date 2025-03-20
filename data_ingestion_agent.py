@@ -61,6 +61,10 @@ class DataIngestionAgent:
 
         failed_files: list[tuple[str, str]] = [] # List of files that failed to process
 
+        # Check if folder my-docs exists, if not create it
+        if not os.path.exists("my-docs"):
+            os.makedirs("my-docs")
+
         # use parallel processing to chunk the files
         with Pool(processes=min(os.cpu_count(), 4)) as pool:  # Limits to CPU cores or 4 max
             results = pool.map(DataIngestionAgent.process_file_safe, file_paths)
