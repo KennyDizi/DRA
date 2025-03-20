@@ -25,6 +25,7 @@ lxml_html_clean
 websockets
 unstructured==0.17.0
 unstructured-inference==0.8.10
+langchain-unstructured==0.1.6
 onnxruntime==1.19.2
 json_repair
 json5
@@ -45,7 +46,5 @@ networkx==3.4.2
 langchain-text-splitters==0.3.7
 langchain_community==0.3.20
 python-dotenv==1.0.1
-langchain-unstructured==0.1.6
-unstructured==0.17.0
 faiss-cpu==1.10.0
 markdown-it-py==3.0.0
