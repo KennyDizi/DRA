@@ -64,3 +64,11 @@ Optional. Specifies the total number of words for the report. Can be set either:
 ### RETRIEVERS
 
 You can set it as a single value, eg: `RETRIEVERS="tavily"` or multiple value `RETRIEVERS="tavily,arxiv"` separate them by `,`.
+
+## Prompt
+
+You can put your requirements into the file `prompts/prompts.txt` or if you have multiple prompts that located in multiple files, you can specify it via argument `--prompts your_file.txt`, eg: `./run.sh --report-source web --prompts my_new_requirements.txt`
+
+## Output
+
+The generated output will be saved in markdown file in folder `reports` with timestamped format, eg: `2025-03-20_07-57AM.md`
