@@ -90,7 +90,6 @@ async def main():
 
     # Generate report
     generated_report = await researcher.write_report()
-    logger.info(f"Generated report: {generated_report}")
 
     report_path = os.getenv("REPORT_PATH")
     if report_path is None:
