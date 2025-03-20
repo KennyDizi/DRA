@@ -76,6 +76,7 @@ class DataIngestionAgent:
                         combined_docs += f"{doc.page_content}\n"
                     with open(os.path.join("my-docs", f"{file_name_without_ext}.md"), "w") as f:
                         f.write(combined_docs)
+                    self.logger.info(f"New file has been saved to my-docs/{file_name_without_ext}.md")
 
         if failed_files:
             self.logger.error("Failed to process these files:")
