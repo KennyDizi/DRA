@@ -1,3 +1,11 @@
+## [2025-03-21] [PR#57](https://github.com/KennyDizi/DRA/pull/57)
+
+### Changed
+- Consolidated file processing to use `UnstructuredLoader` exclusively, removing `DoclingLoader` and related dependencies.
+
+### Updated
+- Updated dependencies to remove `docling` and specify `numpy` version.
+
 ## [2025-03-19] [PR#43](https://github.com/KennyDizi/DRA/pull/43)
 
 ### Added
