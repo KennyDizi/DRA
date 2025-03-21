@@ -8,7 +8,7 @@ pydantic
 fastapi
 python-multipart
 markdown
-openai==1.67.0
+openai==1.68.0
 anthropic==0.49.0
 tiktoken==0.9.0
 gpt-researcher==0.12.12
@@ -23,7 +23,7 @@ python-docx
 htmldocx
 lxml_html_clean
 websockets
-unstructured==0.17.0
+unstructured==0.17.2
 unstructured-inference==0.8.10
 langchain-unstructured==0.1.6
 onnxruntime==1.19.2
