@@ -65,6 +65,10 @@ Optional. Specifies the total number of words for the report. Can be set either:
 
 You can set it as a single value, eg: `RETRIEVERS="tavily"` or multiple value `RETRIEVERS="tavily,arxiv"` separate them by `,`.
 
+### QUERY DOMAINS
+
+You can specify the query domains via argument `--query-domains`, for example: `./run.sh --report-source web --query-domains "foo.com,bar.com"`
+
 ## Prompt
 
 You can put your requirements into the file `prompts/prompts.txt` or if you have multiple prompts that located in multiple files, you can specify it via argument `--prompts your_file.txt`, eg: `./run.sh --report-source web --prompts my_new_requirements.txt`
