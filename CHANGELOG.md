@@ -1,3 +1,9 @@
+## [2025-03-22] [PR#61](https://github.com/KennyDizi/DRA/pull/61)
+
+### Changed
+- Updated `FAST_LLM` configuration from `anthropic:claude-3-7-sonnet-20250219` to `deepseek:deepseek-chat`.
+- Updated `SMART_LLM` configuration from `openai:o3-mini-2025-01-31` to `anthropic:claude-3-7-sonnet-20250219`.
+
 ## [2025-03-22] [PR#59](https://github.com/KennyDizi/DRA/pull/59)
 
 ### Added
