@@ -28,6 +28,10 @@ async def main():
                        type=str,
                        default="prompts.txt",
                        help="Specify the prompts file for the report.")
+    parser.add_argument("--query-domains",
+                       type=str,
+                       default=None,
+                       help="Specify the query domains for the report.")
     args = parser.parse_args()
 
     # Set total words environment variable if provided
@@ -71,6 +75,11 @@ async def main():
     # Get retrievers from environment variable
     retrievers = os.getenv("RETRIEVERS")
 
+    query_domains = None
+    if args.query_domains is not None:
+        query_domains = args.query_domains.split(",")
+        logger.info(f"Query domains: {query_domains}")
+
     # Initialize researcher with deep research type
     researcher = GPTResearcher(
         query=prompt,
@@ -79,6 +88,7 @@ async def main():
         report_format="markdown",
         report_source=report_source.value,
         document_urls=document_urls,
+        query_domains=query_domains,
         headers={
             "retrievers": retrievers
         }
