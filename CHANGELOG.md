@@ -1,3 +1,12 @@
+## [2025-03-22] [PR#59](https://github.com/KennyDizi/DRA/pull/59)
+
+### Added
+- Added `--query-domains` argument to specify query domains for the report, accepting a comma-separated list of domains.
+- Updated `README.md` to document the new `--query-domains` argument with usage examples.
+
+### Changed
+- Modified `GPTResearcher` initialization to include `query_domains` parameter for domain-specific queries.
+
 ## [2025-03-21] [PR#57](https://github.com/KennyDizi/DRA/pull/57)
 
 ### Changed
