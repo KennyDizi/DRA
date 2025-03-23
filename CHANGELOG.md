@@ -1,3 +1,11 @@
+## [2025-03-23] [PR#69](https://github.com/KennyDizi/DRA/pull/69)
+
+### Changed
+- Updated `setup-macos.sh` to install `libmagic` as a separate dependency while retaining existing dependencies.
+
+### Added
+- Added `unstructured-client` to core libraries for enhanced document processing capabilities.
+
 ## [2025-03-23] [PR#65](https://github.com/KennyDizi/DRA/pull/65)
 
 ### Added

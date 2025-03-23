@@ -21,6 +21,7 @@ python-docx
 htmldocx
 lxml_html_clean
 websockets
+unstructured-client==0.31.3
 unstructured==0.17.2
 unstructured-inference==0.8.10
 langchain-unstructured==0.1.6
