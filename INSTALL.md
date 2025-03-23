@@ -1,5 +1,15 @@
 # Install guide
 
+## Prerequisites
+
+```bash
+brew install pyenv
+```
+
+```bash
+brew install pyenv-virtualenv
+```
+
 ## Create a virtual environment
 
 ```bash
@@ -11,11 +21,13 @@ pyenv activate DRA-Python3.12.7
 ## Install the dependencies
 
 ```bash
-pip install -r requirements.txt
+./setup.sh
 ```
 
-## Install additional libs
+## Install additional libs for MacOS
 
 ```bash
-brew install libmagic
+./setup-macos.sh
 ```
+
+Read more details at [here](https://python.langchain.com/docs/integrations/providers/unstructured)
