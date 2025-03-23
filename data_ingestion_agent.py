@@ -35,7 +35,7 @@ class DataIngestionAgent:
             return (file_path, None, f"{str(e)}\nTraceback:\n{format_exc()}")
 
     def ingest_data(self):
-        self.logger.info(f"Ingesting data ...")
+        self.logger.info("Ingesting data ...")
         file_paths = self.get_files(folder_name="original-docs")
         self.logger.info(f"Files: {file_paths}")
 
