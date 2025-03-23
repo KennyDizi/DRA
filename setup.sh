@@ -1,2 +1,2 @@
 pip install -r requirements.txt
-pip install "unstructured[pdf,docx,pptx,doc,ppt,xlsx]"
+pip install "unstructured[all-docs]"

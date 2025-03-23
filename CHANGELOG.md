@@ -1,3 +1,13 @@
+## [2025-03-23] [PR#65](https://github.com/KennyDizi/DRA/pull/65)
+
+### Added
+- Added `setup-macos.sh` script for macOS-specific dependency installation.
+- Added detailed prerequisites and installation steps to `INSTALL.md`, including `pyenv` and `pyenv-virtualenv` setup.
+
+### Changed
+- Updated `setup.sh` to use `unstructured[all-docs]` for broader document support.
+- Replaced direct `pip install` commands with `setup.sh` and `setup-macos.sh` scripts in `INSTALL.md`.
+
 ## [2025-03-23] [PR#63](https://github.com/KennyDizi/DRA/pull/63)
 
 ### Added
