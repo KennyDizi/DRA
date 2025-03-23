@@ -1,3 +1,11 @@
+## [2025-03-23] [PR#63](https://github.com/KennyDizi/DRA/pull/63)
+
+### Added
+- Added `lint.sh` script to automate linting for Python files using `ruff`.
+
+### Changed
+- Fixed string formatting in `data_ingestion_agent.py` by removing unnecessary `f-string`.
+
 ## [2025-03-22] [PR#61](https://github.com/KennyDizi/DRA/pull/61)
 
 ### Changed
