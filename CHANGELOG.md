@@ -1,3 +1,8 @@
+## [2025-03-27] [PR#73](https://github.com/KennyDizi/DRA/pull/73)
+
+### Updated
+- Updated `.env.example` with a link to get `UNSTRUCTURED_API_KEY` from the unstructured.io platform.
+
 ## [2025-03-23] [PR#69](https://github.com/KennyDizi/DRA/pull/69)
 
 ### Changed
