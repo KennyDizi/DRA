@@ -15,7 +15,7 @@ langchain-anthropic==0.3.10
 tavily-python==0.5.4
 firecrawl-py==1.15.0
 networkx==3.4.2
-langchain-text-splitters==0.3.7
+langchain-text-splitters==0.3.8
 langchain_community==0.3.20
 python-dotenv==1.1.0
 faiss-cpu==1.10.0
