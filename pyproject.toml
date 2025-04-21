@@ -2,6 +2,7 @@
 name = "dra"
 version = "0.12.9"
 description = "DRA Project"
+authors = ["Kenny Dizi <chitrung09t2@gmail.com>"]
 requires-python = ">=3.9,<3.13"
 dependencies = [
     "openai==1.75.0",
