@@ -1,3 +1,15 @@
+## [2025-04-23] [PR#90](https://github.com/KennyDizi/DRA/pull/90)
+
+### Dependencies
+- Updated:
+  * `anthropic` from `0.49.0` to `0.50.0`.
+  * `unstructured-client` from `0.33.0` to `0.34.0`.
+  * `langchain-core` from `0.3.54` to `0.3.55`.
+  * `langchain` from `0.3.23` to `0.3.24`.
+  * `langchain-community` from `0.3.21` to `0.3.22`.
+  * `firecrawl-py` from `2.1.2` to `2.2.0`.
+- Synchronized dependency versions in `pyproject.toml` and `requirements.txt`.
+
 ## [2025-03-27] [PR#73](https://github.com/KennyDizi/DRA/pull/73)
 
 ### Updated
