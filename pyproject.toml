@@ -5,29 +5,29 @@ description = "DRA Project"
 authors = ["Kenny Dizi <chitrung09t2@gmail.com>"]
 requires-python = ">=3.9,<3.13"
 dependencies = [
-    "openai==1.75.0",
+    "openai==1.76.2",
     "anthropic==0.50.0",
     "tiktoken==0.9.0",
-    "gpt-researcher==0.12.19",
+    "gpt-researcher==0.13.3",
     "unstructured-client==0.34.0",
     "unstructured==0.17.2",
     "unstructured-inference==0.8.10",
     "langchain-unstructured==0.1.6",
-    "langchain-core==0.3.55",
+    "langchain-core==0.3.56",
     "langchain==0.3.24",
-    "langchain-community==0.3.22",
+    "langchain-community==0.3.23",
     "langchain-deepseek==0.1.3",
-    "langchain-openai==0.3.14",
+    "langchain-openai==0.3.15",
     "langchain-anthropic==0.3.12",
-    "tavily-python==0.5.4",
-    "firecrawl-py==2.2.0",
+    "tavily-python==0.7.1",
+    "firecrawl-py==2.5.3",
     "networkx==3.4.2",
     "langchain-text-splitters==0.3.8",
     "python-dotenv==1.1.0",
     "faiss-cpu==1.10.0",
     "markdown-it-py==3.0.0",
     "numpy==2.2.5",
-    "ruff==0.11.6",
+    "ruff==0.11.8",
 ]
 
 [build-system]
