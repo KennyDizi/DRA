@@ -1,3 +1,13 @@
+## [2025-05-03] [PR#95](https://github.com/KennyDizi/DRA/pull/95)
+
+### Dependencies
+- Updated:
+  * `openai` from `1.76.2` to `1.77.0`.
+  * `langchain-core` from `0.3.56` to `0.3.58`.
+  * `langchain` from `0.3.24` to `0.3.25`.
+  * `langchain-openai` from `0.3.15` to `0.3.16`.
+- Synchronized dependency versions in `pyproject.toml` and `requirements.txt`.
+
 ## [2025-04-23] [PR#90](https://github.com/KennyDizi/DRA/pull/90)
 
 ### Dependencies
