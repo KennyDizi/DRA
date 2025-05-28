@@ -1,3 +1,18 @@
+## [2025-05-28] [PR#99](https://github.com/KennyDizi/DRA/pull/99)
+
+### Dependencies
+- Updated:
+  * `openai` from `1.81.0` to `1.82.0`.
+  * `anthropic` from `0.51.0` to `0.52.0`.
+  * `langchain-core` from `0.3.60` to `0.3.62`.
+  * `langchain-openai` from `0.3.17` to `0.3.18`.
+  * `langchain-anthropic` from `0.3.13` to `0.3.14`.
+  * `tavily-python` from `0.7.2` to `0.7.3`.
+  * `ruff` from `0.11.10` to `0.11.11`.
+
+### Changed
+- Refactored `.env` files to use updated LLM model names and ensure consistency with latest dependency versions.
+
 ## [2025-05-03] [PR#95](https://github.com/KennyDizi/DRA/pull/95)
 
 ### Dependencies
