@@ -5,12 +5,12 @@ description = "DRA Project"
 authors = ["Kenny Dizi <chitrung09t2@gmail.com>"]
 requires-python = ">=3.9,<3.13"
 dependencies = [
-    "openai==1.95.0",
+    "openai==1.95.1",
     "anthropic==0.57.1",
     "tiktoken==0.9.0",
     "gpt-researcher==0.14.1",
     "unstructured-client==0.38.1",
-    "unstructured==0.18.3",
+    "unstructured==0.18.5",
     "unstructured-inference==1.0.5",
     "langchain-unstructured==0.1.6",
     "langchain-core==0.3.68",
@@ -27,7 +27,7 @@ dependencies = [
     "faiss-cpu==1.11.0",
     "markdown-it-py==3.0.0",
     "numpy==2.3.1",
-    "ruff==0.12.2",
+    "ruff==0.12.3",
 ]
 
 [build-system]
